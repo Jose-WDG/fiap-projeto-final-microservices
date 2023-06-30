@@ -18,6 +18,6 @@ Para a segunda parte da atividade, o aluno deve criar uma estrutura para cadastr
 
 *Utilize o banco de dados MongoDB para os dois serviços. 
 
-Ao finalizar a atividade o aluno deve realizar a entrega via sistema fiap, publicar os dois projetos no seu github e enviar o link do repositório no email: profedilson.silva@fiap.com.br 
+Ao finalizar a atividade o aluno deve realizar a entrega via sistema fiap, publicar os dois projetos no seu github e enviar o link do repositório
 
 Boa Sorte!
