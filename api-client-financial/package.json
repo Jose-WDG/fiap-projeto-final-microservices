@@ -1,0 +1,14 @@
+{
+  "name": "api-client-financial",
+  "version": "1.0.0",
+  "description": "Projeto para MBA Fiap. api responsavel pelo controle financeiro dos usuários.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "José Ramalho",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
