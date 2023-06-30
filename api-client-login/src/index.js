@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 app.get('/', (req, res) => {
-    res.send('Hello, world!');
+    res.send('Api para controle dos usuários');
 });
 
 const port = 4000;
