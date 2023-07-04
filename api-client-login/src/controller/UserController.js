@@ -61,7 +61,7 @@ class UserController {
             // Gerar token com JWT
             const token = gerarToken(user._id, user.nomeusuario, user.email);
 
-            res.status(200).json({ output: `Autenticado`, token: token, user: user });
+            res.status(200).json({ output: `Autenticado`, token: token });
 
         } catch (err) {
             console.error(err);
