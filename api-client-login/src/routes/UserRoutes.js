@@ -7,7 +7,7 @@ const verifyToken = require('../middleware/tokenverify');
 // Rotas
 router.post('/user/register', userController.registerUser.bind(userController));
 router.post('/user/auth', userController.authenticateUser.bind(userController));
-router.get("/user/list", userController.find.bind(userController));
+router.get("/user/list", userController.findAll.bind(userController));
 router.post('/user/chagePassowrd', verifyToken, userController.changePassword.bind(userController));
 router.delete('/user/delete/:id', verifyToken, userController.deleteUser.bind(userController))
 router.use((req, res) => {
