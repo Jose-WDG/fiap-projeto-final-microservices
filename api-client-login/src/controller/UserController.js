@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const config = require('../config/seting')
 const User = require('../models/user');
 const gerarToken = require('../utils/generatetoken');
+const { use } = require('../routes/UserRoutes');
 
 class UserController {
     // Cadastrar usuário
@@ -21,17 +22,22 @@ class UserController {
                         return res.status(500).json({ error: `Erro ao gerar a senha ->${erro}` });
                     }
 
-                    // Criar o novo usuário
-                    const newUser = new User({
-                        nomeusuario,
-                        email,
-                        senha: result,
-                        nomecompleto,
-                        telefone
-                    });
-
-                    // Salvar o novo usuário no banco de dados
-                    newUser.save().then((userSave) => res.status(201).json({output: "sucesso", payload: userSave}));
+                    // Gerar uma API Key
+                    bcrypt.genSalt(10).then((newApiKey) => {
+                         // Criar o novo usuário
+                        const newUser = new User({
+                            nomeusuario,
+                            email,
+                            senha: result,
+                            nomecompleto,
+                            telefone,
+                            apikey: newApiKey,
+                        });
+    
+                        // Salvar o novo usuário no banco de dados
+                        newUser.save().then((userSave) => res.status(201).json({ output: "sucesso", payload: userSave }));
+                    }
+                    );
                 });
             });
         } catch (error) {
@@ -61,30 +67,40 @@ class UserController {
             // Gerar token com JWT
             const token = gerarToken(user._id, user.nomeusuario, user.email);
 
-            res.status(200).json({ output: `Autenticado`, token: token });
+            res.status(200).json({ output: `Autenticado`, token: token, apikey: user.apikey });
 
         } catch (err) {
             console.error(err);
-            return res.status(500).json({ error: 'Erro ao autenticar usuário' });
+            return res.status(500).json({ error: `Erro ao autenticar usuário -> ${err.message}` });
         }
     }
 
     // Alterar senha
     async changePassword(req, res) {
         const { email, senhaAntiga, novaSenha } = req.body;
-
+        const apiKey = req.body.apikey || req.query.apikey || req.headers['apikey'];
+        console.log(`body : ${req.body}`)
+        console.log(`apikey req: ${apiKey}`)
+        
         try {
             // Verificar se o usuário existe
             const user = await User.findOne({ email: email });
             if (!user) {
                 return res.status(401).json({ error: 'Usuário não encontrado' });
             }
-
+            console.log(`apikey user: ${user.apikey}`)
             // Verificar se a senha antiga é válida
             const passwordMatch = await bcrypt.compare(senhaAntiga, user.senha);
             if (!passwordMatch) {
                 return res.status(401).json({ error: 'Senha antiga inválida' });
             }
+
+           //verifica ApiKey
+           bcrypt.compare(apikey, user.apikey).then((apikeyIsValid) => {
+            if (apikeyIsValid) {
+                return res.status(403).json({ error: 'ApiKey é invalido' });
+            }
+        });
 
             // Criptografar a senha
             bcrypt.hash(novaSenha, config.bcrypt_salt, (err, result) => {
@@ -98,7 +114,7 @@ class UserController {
 
         } catch (err) {
             console.error(err);
-            return res.status(500).json({ error: 'Erro ao alterar a senha' });
+            return res.status(500).json({ error: `Erro ao alterar a senha -> ${err.message}` });
         }
     }
 
@@ -122,10 +138,10 @@ class UserController {
     }
 
     // Pegar usuário
-    async findUserById(req, res){
+    async findUserById(req, res) {
         User.findById(req.body.idUsuario).then((user) => {
             res.status(200).json({ payload: user })
-        }).catch((error) => res.status(500).json({ error:  `Erro ao processar dados -> ${error}`}));
+        }).catch((error) => res.status(500).json({ error: `Erro ao processar dados -> ${error}` }));
     }
 }
 

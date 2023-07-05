@@ -6,6 +6,7 @@ const UserSchema = new mongoose.Schema({
   senha: String,
   nomecompleto: String,
   telefone: String,
+  apikey: String,
   datacadastro: { type: Date, default: Date.now }
 });
 
