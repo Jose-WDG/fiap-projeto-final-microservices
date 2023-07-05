@@ -31,7 +31,7 @@ class UserController {
                     });
 
                     // Salvar o novo usuário no banco de dados
-                    newUser.save().then((userSave) => res.status(201).json(userSave));
+                    newUser.save().then((userSave) => res.status(201).json({output: "sucesso", payload: userSave}));
                 });
             });
         } catch (error) {
@@ -119,6 +119,13 @@ class UserController {
         }).catch((erro) => {
             res.status(500).json({ output: `Erro ao processar dados -> ${erro}` });
         });
+    }
+
+    // Pegar usuário
+    async findUserById(req, res){
+        User.findById(req.body.idUsuario).then((user) => {
+            res.status(200).json({ payload: user })
+        }).catch((error) => res.status(500).json({ error:  `Erro ao processar dados -> ${error}`}));
     }
 }
 
