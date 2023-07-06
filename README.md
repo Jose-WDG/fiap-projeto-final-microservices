@@ -55,25 +55,25 @@ Algumas requisições exigem autenticação do cliente. É necessário incluir a
 Criar arquivo .env na raiz de cada projeto respectivamente.
 
 ### Arquivo .env para a API de login
-
+DEV_DB_URL=mongodb://root:root@user-db:27017/
 DB_HOST=<host do banco>
 DB_NAME=<Nome do banco>
 DB_USER=<Usuário do banco>
 DB_PASS=<Senha do banco>
 PORT=4000
 HOST=<http://127.0.0.1>
-KEY_JWT=<chave-jsonwebtoken>
+KEY_JWT=chave-jsonwebtoken
 NODE_ENV=<production ou development>
 
 ### Arquivo .env para a API de registros financeiros
-
+DEV_DB_URL=mongodb://root:root@user-db:27017/
 DB_HOST=<host do banco>
 DB_NAME=<Nome do banco>
 DB_USER=<Usuário do banco>
 DB_PASS=<Senha do banco>
 PORT=3000
 HOST=<http://127.0.0.1>
-KEY_JWT=<chave-jsonwebtoken>
+KEY_JWT=chave-jsonwebtoken
 NODE_ENV=<production ou development>
 
 ## Ambientes

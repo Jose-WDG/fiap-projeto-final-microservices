@@ -2,12 +2,22 @@ version: "3"
 
 services: 
   user-app:
-    build: .
+    build: ./api-client-login/
     volumes:
-      - ./:/usr/src/app
+      - ./api-client-login/:/usr/src/app
       - /usr/src/app/node_modules
     ports:
       - 4000:4000
+    depends_on:
+      - user-db
+
+  financial-app:
+    build: ./api-client-financial/
+    volumes:
+      - ./api-client-financial/:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - 3000:3000
     depends_on:
       - user-db
 

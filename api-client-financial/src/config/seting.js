@@ -5,7 +5,7 @@ const config = () => {
     switch (env) {
         case "development":
             return {
-                dbpath: 'mongodb://root:root@127.0.0.1:27017',
+                dbpath: process.env.DEV_DB_URL,
                 jwt_secret: process.env.KEY_JWT,
                 jwt_expires: "5d",
                 bcrypt_salt: 10
