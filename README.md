@@ -37,12 +37,12 @@ Este projeto consiste em duas APIs: API de login, API de registros financeiros e
 
 Para executar o projeto, basta acessar a pasta `/fiap-projeto-final-microservices` e executar o comando `docker-compose up`. Para gerenciar o MongoDB, foi usado o MongoDB Express, que pode ser acessado em http://localhost:8081/.
 
-## Executando a API de login
+## Individualmente Executando a API de login
 
 1. Navegue até a pasta `api-client-login`.
 2. Execute o comando `docker-compose up` para iniciar o serviço.
 
-## Executando a API de registros financeiros
+## Individualmente Executando a API de registros financeiros
 
 1. Navegue até a pasta `api-client-financial`.
 2. Execute o comando `docker-compose up` para iniciar o serviço.
