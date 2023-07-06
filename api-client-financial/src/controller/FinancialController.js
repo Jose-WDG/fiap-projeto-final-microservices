@@ -38,21 +38,22 @@ class FinancialController {
                     return res.status(401).json({ error: 'Usuário não encontrado' });
                 }
 
-                const isFinancialInfo = Financial.findOne({ userId: user._id })
-                if (isFinancialInfo) {
-                    return res.status(401).json({ error: 'Informações financeiras já cadastrada' });
-                }
-
-                const newFinance = new Financial({
-                    nome_banco,
-                    tipo_conta,
-                    nome_titular: user.nomecompleto,
-                    limite_cartao,
-                    apiKey,
-                    userId: user._id,
-                });
-
-                newFinance.save().then((result) => res.status(201).json({ success: 'Informações financeiras cadastradas com sucesso', payload: result }));
+                Financial.findOne({ userId: user._id }).then((result) => {
+                    if (result) {
+                        return res.status(401).json({ error: 'Informações financeiras já cadastrada' });
+                     }
+     
+                     const newFinance = new Financial({
+                         nome_banco,
+                         tipo_conta,
+                         nome_titular: user.nomecompleto,
+                         limite_cartao,
+                         apiKey: user.apikey,
+                         userId: user._id,
+                     });
+     
+                     newFinance.save().then((result) => res.status(201).json({ success: 'Informações financeiras cadastradas com sucesso', payload: result }));
+                })
             });
         } catch (error) {
             console.log(error);
