@@ -91,3 +91,7 @@ NODE_ENV=development (por padrão)
 Certifique-se de preencher as informações corretas de conexão com o banco de dados nos arquivos `.env` para cada ambiente.
 
 Agora você está pronto para executar o projeto e utilizar as APIs de login e registros financeiros. Certifique-se de ter configurado corretamente as dependências e os ambientes para um funcionamento adequado.
+
+### Collection 
+
+Segue a collection com as requests para desenvolvimento

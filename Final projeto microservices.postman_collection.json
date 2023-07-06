@@ -1,0 +1,368 @@
+{
+	"info": {
+		"_postman_id": "3f20d788-2962-438b-8147-bcfec93efeac",
+		"name": "Final projeto microservices",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8805460"
+	},
+	"item": [
+		{
+			"name": "Client",
+			"item": [
+				{
+					"name": "Cadastrar Usuários",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nomeusuario\" : \"neto maria\",\r\n    \"email\": \"neto.teste100@hotmail.com\",\r\n    \"senha\": \"123\",\r\n    \"nomecompleto\": \"neto maria ferreira ramalho\",\r\n    \"telefone\": \"11992339592\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/user/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Usuários",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/user/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"user",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1. Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"neto.teste100@hotmail.com\",\r\n    \"senha\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/user/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"user",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2. Atualiza senha",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "$2b$10$bAv6YL03upK1gmS0MZD/FO",
+								"type": "text"
+							},
+							{
+								"key": "authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHVzdWFyaW8iOiI2NGE2MGU1NWU3YjI1NjE1NDA5MWZmNTMiLCJub21ldXN1YXJpbyI6Im5ldG8gbWFyaWEiLCJlbWFpbCI6Im5ldG8udGVzdGUxMDBAaG90bWFpbC5jb20iLCJhcGlLZXkiOiIkMmIkMTAkYkF2NllMMDN1cEsxZ21TME1aRC9GTyIsImF1dGVudGljYWRvIjp0cnVlLCJpYXQiOjE2ODg2MDA3NjYsImV4cCI6MTY4OTAzMjc2Nn0._FdGh616IJUlXENEMPFbpnwy1aSQGt1hn34_zS3t_Bo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"neto.teste100@hotmail.com\",\r\n    \"senhaAntiga\": \"1234\",\r\n    \"novaSenha\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/user/chagePassowrd",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"user",
+								"chagePassowrd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3. Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\" : \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHVzdWFyaW8iOiI2NGE0ODY1MjIzOTk0MWNkNmI2ZWUxYWQiLCJub21ldXN1YXJpbyI6Impvc2UgUmFtYWxobyIsImVtYWlsIjoibmV0by50ZXN0ZTRAaG90bWFpbC5jb20iLCJhdXRlbnRpY2FkbyI6dHJ1ZSwiaWF0IjoxNjg4NTAzOTA4LCJleHAiOjE2ODg5MzU5MDh9.T4s5SjCpTcT2t-Yhzq5Uwh-YE68Mh6jM5FfEq_ol9jM\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/user/delete/64a60bf7fcf13cf6598c9bf5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"user",
+								"delete",
+								"64a60bf7fcf13cf6598c9bf5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Finance",
+			"item": [
+				{
+					"name": "Registrar info financeira",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHVzdWFyaW8iOiI2NGE2ZjFkMTgzNGY3ZGQyYWE0Njg2ZjYiLCJub21ldXN1YXJpbyI6Im5ldG8gbWFyaWEiLCJlbWFpbCI6Im5ldG8udGVzdGUxMDBAaG90bWFpbC5jb20iLCJhcGlLZXkiOiIkMmIkMTAkNG8wcVdxWG9hWVdIODRBTlVHR1M0ZSIsImF1dGVudGljYWRvIjp0cnVlLCJpYXQiOjE2ODg2NjI0OTEsImV4cCI6MTY4OTA5NDQ5MX0.CvibydmVPhoGaoip5BGW2b19-I0DLeyseV_eH8mBVRc",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "$2b$10$4o0qWqXoaYWH84ANUGGS4e",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome_banco\":\"Banco Santander SA\", \r\n    \"tipo_conta\":\"CC\", \r\n    \"limite_cartao\": 1000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/finance",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"finance"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualiza info financeira",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHVzdWFyaW8iOiI2NGE2ZjFkMTgzNGY3ZGQyYWE0Njg2ZjYiLCJub21ldXN1YXJpbyI6Im5ldG8gbWFyaWEiLCJlbWFpbCI6Im5ldG8udGVzdGUxMDBAaG90bWFpbC5jb20iLCJhcGlLZXkiOiIkMmIkMTAkNG8wcVdxWG9hWVdIODRBTlVHR1M0ZSIsImF1dGVudGljYWRvIjp0cnVlLCJpYXQiOjE2ODg2NjI0OTEsImV4cCI6MTY4OTA5NDQ5MX0.CvibydmVPhoGaoip5BGW2b19-I0DLeyseV_eH8mBVRc",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "$2b$10$4o0qWqXoaYWH84ANUGGS4e",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome_banco\":\"Banco Itau SA\", \r\n    \"tipo_conta\":\"CC\", \r\n    \"limite_cartao\": 2500\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/finance",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"finance"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Info financeira",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHVzdWFyaW8iOiI2NGE2MGU1NWU3YjI1NjE1NDA5MWZmNTMiLCJub21ldXN1YXJpbyI6Im5ldG8gbWFyaWEiLCJlbWFpbCI6Im5ldG8udGVzdGUxMDBAaG90bWFpbC5jb20iLCJhcGlLZXkiOiIkMmIkMTAkYkF2NllMMDN1cEsxZ21TME1aRC9GTyIsImF1dGVudGljYWRvIjp0cnVlLCJpYXQiOjE2ODg2MDA3NjYsImV4cCI6MTY4OTAzMjc2Nn0._FdGh616IJUlXENEMPFbpnwy1aSQGt1hn34_zS3t_Bo",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "$2b$10$bAv6YL03upK1gmS0MZD/FO",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/finance",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"finance"
+							],
+							"query": [
+								{
+									"key": "authorization",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHVzdWFyaW8iOiI2NGE0ODY1MjIzOTk0MWNkNmI2ZWUxYWQiLCJub21ldXN1YXJpbyI6Impvc2UgUmFtYWxobyIsImVtYWlsIjoibmV0by50ZXN0ZTRAaG90bWFpbC5jb20iLCJhdXRlbnRpY2FkbyI6dHJ1ZSwiaWF0IjoxNjg4NTExODU2LCJleHAiOjE2ODg5NDM4NTZ9.l7agLfUkUbDrWqx2wh8XvRUIa0u6cZJkoz7DxZLBhNs",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar informações financeiras",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/finance/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"finance",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar informação financeira",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/finance/delete/64a6f1e98d232fd3bb041834",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"finance",
+								"delete",
+								"64a6f1e98d232fd3bb041834"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
