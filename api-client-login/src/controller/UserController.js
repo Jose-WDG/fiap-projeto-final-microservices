@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken');
 const config = require('../config/seting')
 const User = require('../models/user');
 const gerarToken = require('../utils/generatetoken');
-const { use } = require('../routes/UserRoutes');
 
 class UserController {
     // Cadastrar usuário
@@ -23,8 +22,8 @@ class UserController {
                     }
 
                     // Gerar uma API Key
-                    bcrypt.genSalt(10).then((newApiKey) => {
-                         // Criar o novo usuário
+                    bcrypt.genSalt(config.bcrypt_salt).then((newApiKey) => {
+                        // Criar o novo usuário
                         const newUser = new User({
                             nomeusuario,
                             email,
@@ -33,7 +32,7 @@ class UserController {
                             telefone,
                             apikey: newApiKey,
                         });
-    
+
                         // Salvar o novo usuário no banco de dados
                         newUser.save().then((userSave) => res.status(201).json({ output: "sucesso", payload: userSave }));
                     }
@@ -65,7 +64,7 @@ class UserController {
             }
 
             // Gerar token com JWT
-            const token = gerarToken(user._id, user.nomeusuario, user.email);
+            const token = gerarToken(user._id, user.nomeusuario, user.email, user.apikey);
 
             res.status(200).json({ output: `Autenticado`, token: token, apikey: user.apikey });
 
@@ -78,10 +77,8 @@ class UserController {
     // Alterar senha
     async changePassword(req, res) {
         const { email, senhaAntiga, novaSenha } = req.body;
-        const apiKey = req.body.apikey || req.query.apikey || req.headers['apikey'];
-        console.log(`body : ${req.body}`)
-        console.log(`apikey req: ${apiKey}`)
-        
+        const apiKey = req.body.apikey || req.query.apikey || req.headers['apikey'] || "";
+
         try {
             // Verificar se o usuário existe
             const user = await User.findOne({ email: email });
@@ -95,12 +92,12 @@ class UserController {
                 return res.status(401).json({ error: 'Senha antiga inválida' });
             }
 
-           //verifica ApiKey
-           bcrypt.compare(apikey, user.apikey).then((apikeyIsValid) => {
-            if (apikeyIsValid) {
-                return res.status(403).json({ error: 'ApiKey é invalido' });
+            //verifica ApiKey
+            const apikeyvalid = apiKey === user.apikey;
+            if (!apikeyvalid) {
+                return res.status(403).json({ error: 'ApiKey é inválida' });
             }
-        });
+
 
             // Criptografar a senha
             bcrypt.hash(novaSenha, config.bcrypt_salt, (err, result) => {

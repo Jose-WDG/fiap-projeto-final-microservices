@@ -19,7 +19,8 @@ function verifyToken(req, res, next) {
         req.content = {
             id: result.idusuario,
             usuario: result.nomeusuario,
-            email: result.email
+            email: result.email,
+            apiKey: result.apiKey
         }
         return next();
     });
