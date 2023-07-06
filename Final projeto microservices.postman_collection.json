@@ -67,7 +67,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									""
+									"var responseBody = pm.response.json();\r",
+									"let token = responseBody.token\r",
+									"let apikey = responseBody.apikey\r",
+									"pm.environment.set(\"token\", token);\r",
+									"pm.environment.set(\"apikey\", apikey)"
 								],
 								"type": "text/javascript"
 							}
@@ -119,18 +123,18 @@
 						"header": [
 							{
 								"key": "apiKey",
-								"value": "$2b$10$bAv6YL03upK1gmS0MZD/FO",
+								"value": "{{apikey}}",
 								"type": "text"
 							},
 							{
 								"key": "authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHVzdWFyaW8iOiI2NGE2MGU1NWU3YjI1NjE1NDA5MWZmNTMiLCJub21ldXN1YXJpbyI6Im5ldG8gbWFyaWEiLCJlbWFpbCI6Im5ldG8udGVzdGUxMDBAaG90bWFpbC5jb20iLCJhcGlLZXkiOiIkMmIkMTAkYkF2NllMMDN1cEsxZ21TME1aRC9GTyIsImF1dGVudGljYWRvIjp0cnVlLCJpYXQiOjE2ODg2MDA3NjYsImV4cCI6MTY4OTAzMjc2Nn0._FdGh616IJUlXENEMPFbpnwy1aSQGt1hn34_zS3t_Bo",
+								"value": "{{token}}",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"neto.teste100@hotmail.com\",\r\n    \"senhaAntiga\": \"1234\",\r\n    \"novaSenha\": \"123\"\r\n}",
+							"raw": "{\r\n    \"email\": \"neto.teste100@hotmail.com\",\r\n    \"senhaAntiga\": \"123\",\r\n    \"novaSenha\": \"1234\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -208,12 +212,12 @@
 						"header": [
 							{
 								"key": "authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHVzdWFyaW8iOiI2NGE2ZjFkMTgzNGY3ZGQyYWE0Njg2ZjYiLCJub21ldXN1YXJpbyI6Im5ldG8gbWFyaWEiLCJlbWFpbCI6Im5ldG8udGVzdGUxMDBAaG90bWFpbC5jb20iLCJhcGlLZXkiOiIkMmIkMTAkNG8wcVdxWG9hWVdIODRBTlVHR1M0ZSIsImF1dGVudGljYWRvIjp0cnVlLCJpYXQiOjE2ODg2NjI0OTEsImV4cCI6MTY4OTA5NDQ5MX0.CvibydmVPhoGaoip5BGW2b19-I0DLeyseV_eH8mBVRc",
+								"value": "{{token}}",
 								"type": "text"
 							},
 							{
 								"key": "apikey",
-								"value": "$2b$10$4o0qWqXoaYWH84ANUGGS4e",
+								"value": "{{apikey}}",
 								"type": "text"
 							}
 						],
@@ -248,12 +252,12 @@
 						"header": [
 							{
 								"key": "authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHVzdWFyaW8iOiI2NGE2ZjFkMTgzNGY3ZGQyYWE0Njg2ZjYiLCJub21ldXN1YXJpbyI6Im5ldG8gbWFyaWEiLCJlbWFpbCI6Im5ldG8udGVzdGUxMDBAaG90bWFpbC5jb20iLCJhcGlLZXkiOiIkMmIkMTAkNG8wcVdxWG9hWVdIODRBTlVHR1M0ZSIsImF1dGVudGljYWRvIjp0cnVlLCJpYXQiOjE2ODg2NjI0OTEsImV4cCI6MTY4OTA5NDQ5MX0.CvibydmVPhoGaoip5BGW2b19-I0DLeyseV_eH8mBVRc",
+								"value": "{{token}}",
 								"type": "text"
 							},
 							{
 								"key": "apikey",
-								"value": "$2b$10$4o0qWqXoaYWH84ANUGGS4e",
+								"value": "{{apikey}}",
 								"type": "text"
 							}
 						],
@@ -288,12 +292,12 @@
 						"header": [
 							{
 								"key": "authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHVzdWFyaW8iOiI2NGE2MGU1NWU3YjI1NjE1NDA5MWZmNTMiLCJub21ldXN1YXJpbyI6Im5ldG8gbWFyaWEiLCJlbWFpbCI6Im5ldG8udGVzdGUxMDBAaG90bWFpbC5jb20iLCJhcGlLZXkiOiIkMmIkMTAkYkF2NllMMDN1cEsxZ21TME1aRC9GTyIsImF1dGVudGljYWRvIjp0cnVlLCJpYXQiOjE2ODg2MDA3NjYsImV4cCI6MTY4OTAzMjc2Nn0._FdGh616IJUlXENEMPFbpnwy1aSQGt1hn34_zS3t_Bo",
+								"value": "{{token}}",
 								"type": "text"
 							},
 							{
 								"key": "apikey",
-								"value": "$2b$10$bAv6YL03upK1gmS0MZD/FO",
+								"value": "{{apikey}}",
 								"type": "text"
 							}
 						],

@@ -49,7 +49,7 @@ Para executar o projeto, basta acessar a pasta `/fiap-projeto-final-microservice
 
 ## Autenticação
 
-Algumas requisições exigem autenticação do cliente. É necessário incluir as seguintes informações no header, body ou params:
+Algumas requisições exigem autenticação do cliente. É necessário incluir as seguintes informações no header, body ou params, retornados na chamada de login:
 
 - `Authorization`: Token JWT gerado para o cliente autenticado.
 - `Apikey`: Chave de API do cliente que gerou o token JWT.
@@ -94,4 +94,4 @@ Agora você está pronto para executar o projeto e utilizar as APIs de login e r
 
 ### Collection 
 
-Segue a collection com as requests para desenvolvimento
+Segue a collection + environment com as requests para desenvolvimento
