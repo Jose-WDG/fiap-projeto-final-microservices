@@ -25,13 +25,18 @@ Ao finalizar a atividade o aluno deve realizar a entrega via sistema fiap, publi
 
 # executar
 
-Este projeto consiste em duas APIs: API de login e API de registros financeiros. É necessário que ambas estejam em execução para o correto funcionamento do sistema.
+Este projeto consiste em duas APIs: API de login, API de registros financeiros e mongoDB. É necessário que ambas estejam em execução para o correto funcionamento do sistema.
 
 ## Pré-requisitos
 
 - Docker instalado no ambiente
 - Conta no MongoDB Cloud (recomendado para ambiente de produção)
 - MongoDB para ambiente de desenvolvimento no Docker
+
+## Executar projeto por completo
+
+Para executar o projeto basta acessar a pasta `/fiap-projeto-final-microservices`, executar o comando `docker-compose up`.
+Para gerenciamento do MongoDB, foi usado o mongodb express http://localhost:8081/
 
 ## Executando a API de login
 
@@ -63,7 +68,7 @@ DB_PASS=<Senha do banco>
 PORT=4000
 HOST=<http://127.0.0.1>
 KEY_JWT=chave-jsonwebtoken
-NODE_ENV=<production ou development>
+NODE_ENV=<production ou development> development por padrão
 
 ### Arquivo .env para a API de registros financeiros
 DEV_DB_URL=mongodb://root:root@user-db:27017/
@@ -74,7 +79,7 @@ DB_PASS=<Senha do banco>
 PORT=3000
 HOST=<http://127.0.0.1>
 KEY_JWT=chave-jsonwebtoken
-NODE_ENV=<production ou development>
+NODE_ENV=<production ou development> development por padrão
 
 ## Ambientes
 
