@@ -33,7 +33,7 @@ Este projeto consiste em duas APIs: API de login, API de registros financeiros e
 - Conta no MongoDB Cloud (recomendado para ambiente de produção)
 - MongoDB para ambiente de desenvolvimento no Docker
 
-## Executar projeto completo
+## Executar projeto completo (somente para desenvolvimento)
 
 Para executar o projeto, basta acessar a pasta `/fiap-projeto-final-microservices` e executar o comando `docker-compose up`. Para gerenciar o MongoDB, foi usado o MongoDB Express, que pode ser acessado em http://localhost:8081/.
 
